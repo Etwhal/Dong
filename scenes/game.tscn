@@ -1,0 +1,155 @@
+[gd_scene load_steps=11 format=3 uid="uid://bvv228263dfs4"]
+
+[ext_resource type="Script" path="res://scripts/ScoreSystem.gd" id="1_iivxg"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_rujnf"]
+[ext_resource type="Script" path="res://scripts/Ball.gd" id="2_ixew3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cpm5i"]
+font_size = 128
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_rsbom"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7xsor"]
+a = Vector2(0, -75)
+b = Vector2(0, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjp6q"]
+size = Vector2(800, 10)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_jvaqv"]
+a = Vector2(298, 0)
+b = Vector2(-298, 0)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ax30v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6q8vc"]
+
+[node name="Game" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -300.0
+offset_right = -400.0
+offset_bottom = -300.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="UI_Related_Nodes" type="Node" parent="."]
+script = ExtResource("1_iivxg")
+
+[node name="PlayerScore" type="Label" parent="UI_Related_Nodes"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -600.0
+offset_right = -550.0
+offset_bottom = -425.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cpm5i")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="EnemyScore" type="Label" parent="UI_Related_Nodes"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -600.0
+offset_right = -100.0
+offset_bottom = -425.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_cpm5i")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(-350, 0)
+script = ExtResource("1_rujnf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(10, 150)
+texture = SubResource("CanvasTexture_rsbom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(5, 0)
+shape = SubResource("SegmentShape2D_7xsor")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="UpperWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, -300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/UpperWall"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_cjp6q")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="DownWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 310)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/DownWall"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_cjp6q")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="ScoredEnemy" type="Area2D" parent="Walls"]
+position = Vector2(-400, 0)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/ScoredEnemy"]
+shape = SubResource("SegmentShape2D_jvaqv")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="ScoredPlayer" type="Area2D" parent="Walls"]
+position = Vector2(400, 0)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/ScoredPlayer"]
+shape = SubResource("SegmentShape2D_jvaqv")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+motion_mode = 1
+script = ExtResource("2_ixew3")
+speedBall = 250.0
+minAngle = -0.3
+maxAngle = -0.525
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+scale = Vector2(20, 20)
+texture = SubResource("CanvasTexture_ax30v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_6q8vc")
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(350, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+scale = Vector2(10, 150)
+texture = SubResource("CanvasTexture_rsbom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(5, 0)
+shape = SubResource("SegmentShape2D_7xsor")
+
+[connection signal="body_entered" from="Walls/ScoredEnemy" to="Ball" method="_on_scored_enemy_body_entered"]
+[connection signal="body_entered" from="Walls/ScoredPlayer" to="Ball" method="_on_scored_player_body_entered"]
+[connection signal="scored" from="Ball" to="UI_Related_Nodes" method="_on_ball_scored"]

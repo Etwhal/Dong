@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bam1prjps0cd0"]
+
+[ext_resource type="Script" path="res://scripts/SceneManager.gd" id="1_x6yaw"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_x6yaw")
+Scenes = {
+"Game": &"res://scenes/game.tscn",
+"Menu": &"res://scenes/menu.tscn"
+}

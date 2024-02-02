@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://0uygo46mhjav"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_r7k6e"]
+[ext_resource type="Texture2D" uid="uid://cue6ngba247c8" path="res://sprites/play_button.png" id="1_ytpra"]
+[ext_resource type="Texture2D" uid="uid://8ox6invrdm8a" path="res://sprites/quit_button.png" id="2_6rclf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_sf2vo"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r7k6e")
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 190.0
+offset_right = 529.0
+offset_bottom = 282.0
+icon = ExtResource("1_ytpra")
+icon_alignment = 1
+expand_icon = true
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 352.0
+offset_right = 529.0
+offset_bottom = 444.0
+icon = ExtResource("2_6rclf")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 41.0
+offset_right = 633.0
+offset_bottom = 155.0
+texture = SubResource("CanvasTexture_sf2vo")
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
