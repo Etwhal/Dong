@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvv228263dfs4"]
+[gd_scene load_steps=12 format=3 uid="uid://bvv228263dfs4"]
 
 [ext_resource type="Script" path="res://scripts/ScoreSystem.gd" id="1_iivxg"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_rujnf"]
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="2_ixew3"]
+[ext_resource type="Material" uid="uid://4eyt5qoypdi1" path="res://shaders/CRT.tres" id="2_r6vi3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cpm5i"]
 font_size = 128
@@ -149,6 +150,13 @@ texture = SubResource("CanvasTexture_rsbom")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 position = Vector2(5, 0)
 shape = SubResource("SegmentShape2D_7xsor")
+
+[node name="Shader" type="ColorRect" parent="."]
+material = ExtResource("2_r6vi3")
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
 
 [connection signal="body_entered" from="Walls/ScoredEnemy" to="Ball" method="_on_scored_enemy_body_entered"]
 [connection signal="body_entered" from="Walls/ScoredPlayer" to="Ball" method="_on_scored_player_body_entered"]

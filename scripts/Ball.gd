@@ -32,13 +32,13 @@ func reset_ball_center() -> Vector2:
 	speedBall = originalSpeedBall
 	return Vector2(rng.randf_range(minAngle, maxAngle), rng.randf_range(minAngle, maxAngle))
 
-func _on_scored_enemy_body_entered(body):
+func _on_scored_enemy_body_entered(_body):
 	position = Vector2.ZERO
 	vel = reset_ball_center()
 	scored.emit("Enemy")
 
 
-func _on_scored_player_body_entered(body):
+func _on_scored_player_body_entered(_body):
 	position = Vector2.ZERO
 	vel = abs(reset_ball_center())
 	scored.emit("Player")
