@@ -40,11 +40,3 @@ func GetScenesCount() -> int:
 # Description: Return name of the current scene
 func GetCurrentSceneAlias() -> String:
 	return m_CurrentSceneAlias
-
-
-func _on_play_button_pressed():
-	pass # Replace with function body.
-
-
-func _on_quit_button_pressed():
-	pass # Replace with function body.

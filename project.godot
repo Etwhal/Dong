@@ -23,3 +23,17 @@ SceneManager="*res://scenes/scene_manager.tscn"
 
 window/size/viewport_width=800
 window/size/viewport_height=600
+window/size/resizable=false
+
+[input]
+
+P2_up={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":-1.0,"script":null)
+]
+}
+P2_down={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
+]
+}

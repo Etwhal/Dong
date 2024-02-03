@@ -3,8 +3,7 @@
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_r7k6e"]
 [ext_resource type="Texture2D" uid="uid://cue6ngba247c8" path="res://sprites/play_button.png" id="1_ytpra"]
 [ext_resource type="Texture2D" uid="uid://8ox6invrdm8a" path="res://sprites/quit_button.png" id="2_6rclf"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_sf2vo"]
+[ext_resource type="Texture2D" uid="uid://c4ay8d4c3d212" path="res://sprites/DONG_LOGO.png" id="4_1yh21"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -14,6 +13,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r7k6e")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 600.0
+color = Color(0, 0, 0, 1)
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 0
@@ -41,7 +46,7 @@ offset_left = 167.0
 offset_top = 41.0
 offset_right = 633.0
 offset_bottom = 155.0
-texture = SubResource("CanvasTexture_sf2vo")
+texture = ExtResource("4_1yh21")
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

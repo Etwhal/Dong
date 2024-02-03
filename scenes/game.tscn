@@ -1,18 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvv228263dfs4"]
+[gd_scene load_steps=15 format=3 uid="uid://bvv228263dfs4"]
 
 [ext_resource type="Script" path="res://scripts/ScoreSystem.gd" id="1_iivxg"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_rujnf"]
+[ext_resource type="Script" path="res://scripts/WIN_CONDITION.gd" id="2_5eb6q"]
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="2_ixew3"]
 [ext_resource type="Material" uid="uid://4eyt5qoypdi1" path="res://shaders/CRT.tres" id="2_r6vi3"]
+[ext_resource type="Texture2D" uid="uid://dpxinr0tqmdi" path="res://icon.svg" id="2_rpt53"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cpm5i"]
 font_size = 128
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_rsbom"]
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_7xsor"]
-a = Vector2(0, -75)
-b = Vector2(0, 75)
+[sub_resource type="LabelSettings" id="LabelSettings_iqa3f"]
+font_size = 96
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjp6q"]
 size = Vector2(800, 10)
@@ -20,6 +19,12 @@ size = Vector2(800, 10)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_jvaqv"]
 a = Vector2(298, 0)
 b = Vector2(-298, 0)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_rsbom"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7xsor"]
+a = Vector2(0, -75)
+b = Vector2(0, 75)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ax30v"]
 
@@ -41,6 +46,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="UI_Related_Nodes" type="Node" parent="."]
 script = ExtResource("1_iivxg")
+scoreMax = 2
 
 [node name="PlayerScore" type="Label" parent="UI_Related_Nodes"]
 anchors_preset = 8
@@ -78,19 +84,39 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
+[node name="UI_WIN" type="Control" parent="UI_Related_Nodes"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -465.0
+offset_right = -450.0
+offset_bottom = -315.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5eb6q")
+
+[node name="WinLabel" type="Label" parent="UI_Related_Nodes/UI_WIN"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = " WON !"
+label_settings = SubResource("LabelSettings_iqa3f")
+horizontal_alignment = 1
+
+[node name="MenuButton" type="Button" parent="UI_Related_Nodes/UI_WIN"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 175.0
+offset_right = 266.0
+offset_bottom = 311.0
+icon = ExtResource("2_rpt53")
+
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(-350, 0)
-script = ExtResource("1_rujnf")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(10, 150)
-texture = SubResource("CanvasTexture_rsbom")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(5, 0)
-shape = SubResource("SegmentShape2D_7xsor")
 
 [node name="Walls" type="Node" parent="."]
 
@@ -126,6 +152,32 @@ rotation = -1.5708
 shape = SubResource("SegmentShape2D_jvaqv")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Ball")]
+position = Vector2(-350, 0)
+script = ExtResource("1_rujnf")
+Ball = NodePath("../Ball")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(10, 150)
+texture = SubResource("CanvasTexture_rsbom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(5, 0)
+shape = SubResource("SegmentShape2D_7xsor")
+
+[node name="Enemy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Ball")]
+position = Vector2(350, 0)
+script = ExtResource("1_rujnf")
+Ball = NodePath("../Ball")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+scale = Vector2(10, 150)
+texture = SubResource("CanvasTexture_rsbom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(5, 0)
+shape = SubResource("SegmentShape2D_7xsor")
+
 [node name="Ball" type="CharacterBody2D" parent="."]
 motion_mode = 1
 script = ExtResource("2_ixew3")
@@ -140,24 +192,18 @@ texture = SubResource("CanvasTexture_ax30v")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 shape = SubResource("CircleShape2D_6q8vc")
 
-[node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(350, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-scale = Vector2(10, 150)
-texture = SubResource("CanvasTexture_rsbom")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-position = Vector2(5, 0)
-shape = SubResource("SegmentShape2D_7xsor")
-
 [node name="Shader" type="ColorRect" parent="."]
 material = ExtResource("2_r6vi3")
 offset_left = -400.0
 offset_top = -300.0
 offset_right = 400.0
 offset_bottom = 300.0
+mouse_filter = 2
 
+[connection signal="gameEnded" from="UI_Related_Nodes" to="UI_Related_Nodes/UI_WIN" method="_on_game_ended"]
+[connection signal="gameEnded" from="UI_Related_Nodes" to="Player" method="_on_ui_related_nodes_game_ended"]
+[connection signal="gameEnded" from="UI_Related_Nodes" to="Enemy" method="_on_ui_related_nodes_game_ended"]
+[connection signal="pressed" from="UI_Related_Nodes/UI_WIN/MenuButton" to="UI_Related_Nodes/UI_WIN" method="_on_menu_button_pressed"]
 [connection signal="body_entered" from="Walls/ScoredEnemy" to="Ball" method="_on_scored_enemy_body_entered"]
 [connection signal="body_entered" from="Walls/ScoredPlayer" to="Ball" method="_on_scored_player_body_entered"]
 [connection signal="scored" from="Ball" to="UI_Related_Nodes" method="_on_ball_scored"]
