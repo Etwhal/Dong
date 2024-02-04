@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://0uygo46mhjav"]
+[gd_scene load_steps=6 format=3 uid="uid://0uygo46mhjav"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_r7k6e"]
 [ext_resource type="Texture2D" uid="uid://cue6ngba247c8" path="res://sprites/play_button.png" id="1_ytpra"]
 [ext_resource type="Texture2D" uid="uid://8ox6invrdm8a" path="res://sprites/quit_button.png" id="2_6rclf"]
 [ext_resource type="Texture2D" uid="uid://c4ay8d4c3d212" path="res://sprites/DONG_LOGO.png" id="4_1yh21"]
+[ext_resource type="Material" uid="uid://4eyt5qoypdi1" path="res://shaders/CRT.tres" id="5_xx3oi"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -40,6 +41,14 @@ icon = ExtResource("2_6rclf")
 icon_alignment = 1
 expand_icon = true
 
+[node name="ShaderButton" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 300.0
+offset_right = 706.0
+offset_bottom = 331.0
+text = "CRT Shader"
+
 [node name="Logo" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 167.0
@@ -48,5 +57,14 @@ offset_right = 633.0
 offset_bottom = 155.0
 texture = ExtResource("4_1yh21")
 
+[node name="Shader" type="ColorRect" parent="."]
+visible = false
+material = ExtResource("5_xx3oi")
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 600.0
+mouse_filter = 2
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="toggled" from="ShaderButton" to="." method="_on_shader_button_toggled"]

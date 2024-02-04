@@ -11,13 +11,18 @@ var originalSpeedBall : float
 
 signal scored(who : StringName)
 
+var BallHitSound : AudioStream = preload("res://audio/sfx/minerjr__ballhit.wav")
+var Stream : AudioStreamPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng = RandomNumberGenerator.new()
 	originalSpeedBall = speedBall
-	vel = reset_ball_center()
 	
-	pass # Replace with function body.
+	Stream = get_node("../Camera2D/AudioStreamPlayer")
+	Stream.stream = BallHitSound
+	
+	vel = reset_ball_center()
 
 func _process(delta) -> void:
 	var collide = move_and_collide(vel * delta * speedBall)
@@ -26,10 +31,13 @@ func _process(delta) -> void:
 
 func on_body_hit(collide : KinematicCollision2D) -> void:
 	vel = vel.bounce(collide.get_normal())
-	speedBall *= 1.10
+	speedBall *= 1.08
+	Stream.pitch_scale *= 1.04
+	Stream.play()
 	
 func reset_ball_center() -> Vector2:
 	speedBall = originalSpeedBall
+	Stream.pitch_scale = 1.0
 	return Vector2(rng.randf_range(minAngle, maxAngle), rng.randf_range(minAngle, maxAngle))
 
 func _on_scored_enemy_body_entered(_body):

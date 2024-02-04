@@ -28,9 +28,9 @@ uniform vec2 resolution = vec2(640.0, 480.0); // Set the number of rows and colu
 uniform bool pixelate = true; // Fill each square ("pixel") with a sampled color, creating a pixel look and a more accurate representation of how a CRT monitor would work.
 
 uniform bool roll = true;
-uniform float roll_speed = 8.0; // Positive values are down, negative are up
+uniform float roll_speed = 4.0; // Positive values are down, negative are up
 uniform float roll_size : hint_range(0.0, 100.0) = 15.0;
-uniform float roll_variation : hint_range(0.1, 5.0) = 1.8; // This valie is not an exact science. You have to play around with the value to find a look you like. How this works is explained in the code below.
+uniform float roll_variation : hint_range(0.1, 5.0) = 1.9; // This valie is not an exact science. You have to play around with the value to find a look you like. How this works is explained in the code below.
 uniform float distort_intensity : hint_range(0.0, 0.2) = 0.05; // The distortion created by the rolling effect.
 
 uniform float noise_opacity : hint_range(0.0, 1.0) = 0.4;
@@ -42,10 +42,10 @@ uniform float aberration : hint_range(-1.0, 1.0) = 0.03; // Chromatic aberration
 uniform float brightness = 1.4; // When adding scanline gaps and grille the image can get very dark. Brightness tries to compensate for that.
 uniform bool discolor = true; // Add a discolor effect simulating a VHS
 
-uniform float warp_amount :hint_range(0.0, 5.0) = 1.0; // Warp the texture edges simulating the curved glass of a CRT monitor or old TV.
+uniform float warp_amount :hint_range(0.0, 5.0) = 0.9; // Warp the texture edges simulating the curved glass of a CRT monitor or old TV.
 uniform bool clip_warp = false;
 
-uniform float vignette_intensity = 0.4; // Size of the vignette, how far towards the middle it should go.
+uniform float vignette_intensity = 0.45; // Size of the vignette, how far towards the middle it should go.
 uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
 
 // Used by the noise functin to generate a pseudo random value between 0.0 and 1.0
