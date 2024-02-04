@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/WIN_CONDITION.gd" id="2_5eb6q"]
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="2_ixew3"]
 [ext_resource type="Material" uid="uid://4eyt5qoypdi1" path="res://shaders/CRT.tres" id="2_r6vi3"]
-[ext_resource type="Texture2D" uid="uid://dpxinr0tqmdi" path="res://icon.svg" id="2_rpt53"]
+[ext_resource type="Texture2D" uid="uid://fckgb4nic58a" path="res://sprites/back_button.png" id="3_06hp8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cpm5i"]
 font_size = 128
@@ -44,9 +44,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="UI_Related_Nodes" type="Node" parent="."]
+[node name="UI_Related_Nodes" type="Node" parent="." node_paths=PackedStringArray("shaderCRT")]
 script = ExtResource("1_iivxg")
 scoreMax = 2
+shaderCRT = NodePath("../Shader")
 
 [node name="PlayerScore" type="Label" parent="UI_Related_Nodes"]
 anchors_preset = 8
@@ -109,12 +110,22 @@ label_settings = SubResource("LabelSettings_iqa3f")
 horizontal_alignment = 1
 
 [node name="MenuButton" type="Button" parent="UI_Related_Nodes/UI_WIN"]
-layout_mode = 0
-offset_left = 130.0
-offset_top = 175.0
-offset_right = 266.0
-offset_bottom = 311.0
-icon = ExtResource("2_rpt53")
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = 50.0
+offset_right = 129.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+icon = ExtResource("3_06hp8")
+flat = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -198,6 +209,7 @@ texture = SubResource("CanvasTexture_ax30v")
 shape = SubResource("CircleShape2D_6q8vc")
 
 [node name="Shader" type="ColorRect" parent="."]
+visible = false
 material = ExtResource("2_r6vi3")
 offset_left = -400.0
 offset_top = -300.0

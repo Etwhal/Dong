@@ -7,6 +7,7 @@ var scoreP : int
 var scoreE : int
 
 @export var scoreMax : int = 0
+@export var shaderCRT : ColorRect
 
 signal gameEnded(player : String)
 
@@ -16,6 +17,8 @@ func _ready():
 	
 	scoreP = 0
 	scoreE = 0
+	
+	shaderCRT.visible = G_VAR._get_shader()
 
 func _on_ball_scored(who):
 	match who:
