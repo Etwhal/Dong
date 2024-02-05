@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="2_ixew3"]
 [ext_resource type="Material" uid="uid://4eyt5qoypdi1" path="res://shaders/CRT.tres" id="2_r6vi3"]
 [ext_resource type="Texture2D" uid="uid://fckgb4nic58a" path="res://sprites/back_button.png" id="3_06hp8"]
+[ext_resource type="Texture2D" uid="uid://b32bkvt1ovosk" path="res://sprites/Bar_player.png" id="5_ow8v4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cpm5i"]
 font_size = 128
@@ -17,10 +18,8 @@ font_size = 96
 size = Vector2(800, 10)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_jvaqv"]
-a = Vector2(298, 0)
-b = Vector2(-298, 0)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_rsbom"]
+a = Vector2(299, 0)
+b = Vector2(-299, 0)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_7xsor"]
 a = Vector2(0, -75)
@@ -173,8 +172,8 @@ speedCharac = 180
 Ball = NodePath("../Ball")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(10, 150)
-texture = SubResource("CanvasTexture_rsbom")
+texture_filter = 1
+texture = ExtResource("5_ow8v4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(5, 0)
@@ -187,8 +186,8 @@ speedCharac = 180
 Ball = NodePath("../Ball")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-scale = Vector2(10, 150)
-texture = SubResource("CanvasTexture_rsbom")
+texture_filter = 1
+texture = ExtResource("5_ow8v4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 position = Vector2(5, 0)

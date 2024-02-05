@@ -22,7 +22,7 @@ func _ready():
 	Stream = get_node("../Camera2D/AudioStreamPlayer")
 	Stream.stream = BallHitSound
 	
-	Stream.volume_db = G_VAR._get_volume() * 2.0
+	Stream.volume_db = G_VAR._get_volume()
 	
 	vel = reset_ball_center()
 
