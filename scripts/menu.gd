@@ -6,6 +6,7 @@ func _ready() -> void:
 	get_node("OptionsButtons/HSlider").value = G_VAR._get_volume()
 
 func _on_play_button_pressed():
+	G_VAR._set_volume(get_node("OptionsButtons/HSlider").value)
 	SceneManager.SwitchScene("Game")
 
 func _on_quit_button_pressed():
@@ -17,7 +18,3 @@ func _on_shader_button_toggled(toggled_on):
 	
 	shader.visible = toggled_on
 	G_VAR._set_shader(toggled_on)
-
-
-func _on_volume_slider_changed(value: float):
-	G_VAR._set_volume(value)

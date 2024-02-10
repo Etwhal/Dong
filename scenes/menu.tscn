@@ -107,4 +107,3 @@ mouse_filter = 2
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="toggled" from="OptionsButtons/ShaderButton" to="." method="_on_shader_button_toggled"]
-[connection signal="value_changed" from="OptionsButtons/HSlider" to="." method="_on_volume_slider_changed"]
