@@ -23,11 +23,11 @@ func RemoveScene(sceneAlias : String) -> void:
 
 # Description: Switch to a selected scene
 func SwitchScene(sceneAlias : String) -> void:
-	get_tree().change_scene_to_file(Scenes[sceneAlias])
+	SceneTransition.change_scene_to_file(Scenes[sceneAlias])
 
 # Description: Reload the current scene
 func ReloadScene() -> void:
-	get_tree().reload_current_scene()
+	SceneTransition.reload_current_scene()
 	
 # Description: Quit the game
 func QuitGame() -> void:

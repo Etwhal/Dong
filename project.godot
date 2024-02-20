@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 G_VAR="*res://scripts/Global_Variables.gd"
 SceneManager="*res://scenes/scene_manager.tscn"
+SceneTransition="*res://scenes/scene_transition.tscn"
 
 [display]
 

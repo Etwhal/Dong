@@ -7,7 +7,7 @@ func _ready() -> void:
 
 func _on_play_button_pressed():
 	G_VAR._set_volume(get_node("OptionsButtons/HSlider").value)
-	SceneManager.SwitchScene("Game")
+	SceneManager.SwitchScene("DiffMenu")
 
 func _on_quit_button_pressed():
 	SceneManager.QuitGame()

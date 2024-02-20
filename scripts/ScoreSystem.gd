@@ -19,6 +19,7 @@ func _ready():
 	scoreE = 0
 	
 	shaderCRT.visible = G_VAR._get_shader()
+	scoreMax = G_VAR._get_lengh()
 
 func _on_ball_scored(who):
 	match who:

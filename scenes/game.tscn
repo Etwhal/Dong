@@ -45,7 +45,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="UI_Related_Nodes" type="Node" parent="." node_paths=PackedStringArray("shaderCRT")]
 script = ExtResource("1_iivxg")
-scoreMax = 2
+scoreMax = 3
 shaderCRT = NodePath("../Shader")
 
 [node name="PlayerScore" type="Label" parent="UI_Related_Nodes"]
