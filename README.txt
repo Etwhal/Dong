@@ -1,5 +1,5 @@
 Author : nora_
-Last Update : 04/02/2024
+Last Update : 23/02/2024
 
 This is just a simple Pong created using Godot, to help me getting back into gamedev.
 The game is open-source and under no license, meaning you can do whatever you want with it even monetized it idc.
