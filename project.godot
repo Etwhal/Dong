@@ -14,7 +14,7 @@ config/name="Dong"
 config/description="Simple Pong game"
 run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://sprites/logo_temp.ico"
 
 [autoload]
 
