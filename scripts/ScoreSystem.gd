@@ -37,3 +37,9 @@ func game_ended() -> void:
 	if scoreP < scoreMax && scoreE < scoreMax:
 		return
 	gameEnded.emit("Player" if scoreP >= scoreMax else "Enemy")
+
+func _input(event):
+	if event.is_action_pressed("Pause"):
+		var pause_state = not get_tree().paused
+		$PausePanel.visible = pause_state
+		get_tree().paused = pause_state

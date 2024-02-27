@@ -19,7 +19,7 @@ Aside from that, as you will see, the game first start slowly; that is because e
 its speed is reset.
 
 You can choose between 3 duration:
-- Short game (First to 2 points)
+- Short game (First to 3 points)
 - Medium game (First to 5 points)
 - Long game (First to 10 points)
 

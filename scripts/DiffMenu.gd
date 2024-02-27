@@ -1,7 +1,5 @@
 extends Control
 
-@export var Label_info : Label
-
 enum STATE_DIFF {SHORT = 3, MEDIUM = 5, LONG = 10}
 
 var diff : STATE_DIFF = STATE_DIFF.SHORT
@@ -10,27 +8,24 @@ var diff : STATE_DIFF = STATE_DIFF.SHORT
 func _ready():
 	shaderCRT.visible = G_VAR._get_shader()
 
-func EASY() -> String:
+func EASY() -> void:
 	diff = STATE_DIFF.SHORT
-	return "3 points, short game, max 2 minutes."
 	
-func MEDIUM() -> String:
+func MEDIUM() -> void:
 	diff = STATE_DIFF.MEDIUM
-	return "5 points, takes a little longer, max 5 minutes."
 	
-func HARD() -> String:
+func HARD() -> void:
 	diff = STATE_DIFF.LONG
-	return "10 points, the longest, max 10 minutes."
 	
 # ---------------- ON HOVER ----------------
 func _on_short_game_mouse_entered():
-	Label_info.text = EASY()
+	EASY()
 
 func _on_medium_game_mouse_entered():
-	Label_info.text = MEDIUM()
+	MEDIUM()
 
 func _on_long_game_mouse_entered():
-	Label_info.text = HARD()
+	HARD()
 	
 # ---------------- ON PRESS ----------------
 func _on_game_pressed():

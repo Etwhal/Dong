@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://nop3rd6565ly"]
+
+[ext_resource type="Texture2D" uid="uid://c4ay8d4c3d212" path="res://sprites/DONG_LOGO.png" id="1_7sksi"]
+[ext_resource type="Script" path="res://scripts/instruction.gd" id="1_yv863"]
+[ext_resource type="Material" uid="uid://4eyt5qoypdi1" path="res://shaders/CRT.tres" id="2_oujsj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pw5qh"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_a80og"]
+font_size = 46
+
+[sub_resource type="Animation" id="Animation_3bbqj"]
+resource_name = "Blinking"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sjiph"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ybrdj"]
+_data = {
+"Blinking": SubResource("Animation_3bbqj"),
+"RESET": SubResource("Animation_sjiph")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yv863")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 800.0
+offset_bottom = 600.0
+color = Color(0, 0, 0, 1)
+
+[node name="Logo" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 167.0
+offset_top = 41.0
+offset_right = 633.0
+offset_bottom = 155.0
+texture = ExtResource("1_7sksi")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 192.0
+offset_right = 708.0
+offset_bottom = 513.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dong is played using a single controller for 2 players ! The one of the left is using the left stick, and the one on the right is using the right stick ! You can press esc or the start button to pause the game ! There's no other input required, have fun !"
+label_settings = SubResource("LabelSettings_pw5qh")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 85.0
+offset_top = 526.0
+offset_right = 720.0
+offset_bottom = 577.0
+text = "Press 'Start' to continue . . ."
+label_settings = SubResource("LabelSettings_a80og")
+vertical_alignment = 1
+
+[node name="Blink" type="AnimationPlayer" parent="Label"]
+libraries = {
+"": SubResource("AnimationLibrary_ybrdj")
+}
+
+[node name="Shader" type="ColorRect" parent="."]
+visible = false
+material = ExtResource("2_oujsj")
+offset_right = 800.0
+offset_bottom = 600.0
+mouse_filter = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

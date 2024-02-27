@@ -7,5 +7,6 @@ script = ExtResource("1_x6yaw")
 Scenes = {
 "DiffMenu": &"res://scenes/DiffMenu.tscn",
 "Game": &"res://scenes/game.tscn",
+"Instruction": &"res://scenes/instruction.tscn",
 "Menu": &"res://scenes/menu.tscn"
 }

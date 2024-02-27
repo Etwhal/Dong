@@ -3,10 +3,10 @@
 [ext_resource type="Material" uid="uid://4eyt5qoypdi1" path="res://shaders/CRT.tres" id="1_gxigm"]
 [ext_resource type="Script" path="res://scripts/DiffMenu.gd" id="1_ju5uv"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ip7dd"]
-font_size = 26
+[sub_resource type="LabelSettings" id="LabelSettings_aoolg"]
+font_size = 22
 
-[node name="Control" type="Control" node_paths=PackedStringArray("Label_info", "shaderCRT")]
+[node name="Control" type="Control" node_paths=PackedStringArray("shaderCRT")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ju5uv")
-Label_info = NodePath("Panel/Description")
 shaderCRT = NodePath("Shader")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -25,46 +24,108 @@ color = Color(0, 0, 0, 1)
 
 [node name="Buttons" type="Node" parent="."]
 
-[node name="ShortGame" type="Button" parent="Buttons"]
-offset_left = 152.0
-offset_top = 141.0
-offset_right = 213.0
-offset_bottom = 172.0
-text = "SHORT"
+[node name="Panel" type="Panel" parent="Buttons"]
+offset_left = 50.0
+offset_top = 140.0
+offset_right = 250.0
+offset_bottom = 340.0
 
-[node name="MediumGame" type="Button" parent="Buttons"]
-offset_left = 152.0
-offset_top = 241.0
-offset_right = 227.0
-offset_bottom = 272.0
-text = "MEDIUM"
-
-[node name="LongGame" type="Button" parent="Buttons"]
-offset_left = 152.0
-offset_top = 341.0
-offset_right = 206.0
-offset_bottom = 372.0
-text = "LONG"
-
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 447.0
-offset_top = 115.0
-offset_right = 725.0
-offset_bottom = 393.0
-
-[node name="Description" type="Label" parent="Panel"]
+[node name="ShortGame" type="Button" parent="Buttons/Panel"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_top = 5.0
+offset_right = 30.5
+offset_bottom = 36.0
 grow_horizontal = 2
+text = "SHORT GAME"
+
+[node name="Label" type="Label" parent="Buttons/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 50.0
 grow_vertical = 2
-text = "Hover your mouse on a button to know more about each setting !"
-label_settings = SubResource("LabelSettings_ip7dd")
-horizontal_alignment = 1
+text = "
+- First to 3 win
+
+- 2 mins max"
+label_settings = SubResource("LabelSettings_aoolg")
 vertical_alignment = 1
-autowrap_mode = 2
+
+[node name="Panel3" type="Panel" parent="Buttons"]
+offset_left = 300.0
+offset_top = 140.0
+offset_right = 500.0
+offset_bottom = 340.0
+
+[node name="MediumGame" type="Button" parent="Buttons/Panel3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.5
+offset_right = 37.5
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "MEDIUM GAME"
+
+[node name="Label" type="Label" parent="Buttons/Panel3"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_vertical = 2
+text = "
+- First to 5 win
+
+- 5 mins max"
+label_settings = SubResource("LabelSettings_aoolg")
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="Buttons"]
+offset_left = 550.0
+offset_top = 140.0
+offset_right = 750.0
+offset_bottom = 340.0
+
+[node name="LongGame" type="Button" parent="Buttons/Panel2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_right = 27.0
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "LONG GAME"
+
+[node name="Label" type="Label" parent="Buttons/Panel2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_vertical = 2
+text = "
+- First to 10 win
+
+- 10 mins max"
+label_settings = SubResource("LabelSettings_aoolg")
+vertical_alignment = 1
 
 [node name="Shader" type="ColorRect" parent="."]
 visible = false
@@ -74,9 +135,9 @@ offset_right = 800.0
 offset_bottom = 600.0
 mouse_filter = 2
 
-[connection signal="mouse_entered" from="Buttons/ShortGame" to="." method="_on_short_game_mouse_entered"]
-[connection signal="pressed" from="Buttons/ShortGame" to="." method="_on_game_pressed"]
-[connection signal="mouse_entered" from="Buttons/MediumGame" to="." method="_on_medium_game_mouse_entered"]
-[connection signal="pressed" from="Buttons/MediumGame" to="." method="_on_game_pressed"]
-[connection signal="mouse_entered" from="Buttons/LongGame" to="." method="_on_long_game_mouse_entered"]
-[connection signal="pressed" from="Buttons/LongGame" to="." method="_on_game_pressed"]
+[connection signal="mouse_entered" from="Buttons/Panel/ShortGame" to="." method="_on_short_game_mouse_entered"]
+[connection signal="pressed" from="Buttons/Panel/ShortGame" to="." method="_on_game_pressed"]
+[connection signal="mouse_entered" from="Buttons/Panel3/MediumGame" to="." method="_on_medium_game_mouse_entered"]
+[connection signal="pressed" from="Buttons/Panel3/MediumGame" to="." method="_on_game_pressed"]
+[connection signal="mouse_entered" from="Buttons/Panel2/LongGame" to="." method="_on_long_game_mouse_entered"]
+[connection signal="pressed" from="Buttons/Panel2/LongGame" to="." method="_on_game_pressed"]
